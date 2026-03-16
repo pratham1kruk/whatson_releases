@@ -165,7 +165,7 @@ whatson.exe wsleep
 
 ## License
 
-MIT — see [LICENSE](https://github.com/pratham1kruk/whatson/blob/main/LICENSE)
+MIT — see [LICENSE](https://github.com/pratham1kruk/whatson_releases/blob/main/LICENSE)
 
 ---
 
