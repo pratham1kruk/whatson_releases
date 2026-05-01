@@ -46,43 +46,124 @@ Whatson scans your codebase and generates a `context.md` with a project overview
 
 ### Windows
 
+#### Step 1 — Download the installer
+
+Go to the [Releases page](https://github.com/pratham1kruk/whatson/releases) and download:
+
 ```
-1. Download  →  whatson-installer.exe
-2. Run the installer
-3. Follow the setup wizard
+Whatson_Installer.exe
 ```
 
-> Installs the Whatson binary to `Program Files\Whatson` and auto-installs the VS Code extension.
+#### Step 2 — Run the installer
+
+Double-click `Whatson_Installer.exe`.
+
+> If Windows SmartScreen shows a warning, click **More info → Run anyway**.  
+> The installer does not require Administrator privileges.
+
+#### Step 3 — Follow the setup wizard
+
+```
+Welcome screen        →  click Next
+Choose install folder →  default is fine, click Next
+Installing            →  copies files and installs the VS Code extension automatically
+Finish                →  click Finish
+```
+
+The installer will:
+- Copy the Whatson engine to `%LOCALAPPDATA%\Whatson\`
+- Detect your VS Code installation and install the extension automatically
+- Register Whatson in Add/Remove Programs for clean uninstallation
+
+> If VS Code is not found, the installer will show the manual install command.  
+> Restart VS Code after installation if the extension does not appear immediately.
+
+#### Uninstall (Windows)
+
+```
+Settings → Apps → search "Whatson" → Uninstall
+```
+
+Or run `Uninstall_Whatson.exe` from `%LOCALAPPDATA%\Whatson\`.
+
+---
 
 ### Linux (Debian / Ubuntu)
 
-```bash
-sudo dpkg -i whatson_0.1.0_amd64.deb
+#### Step 1 — Download the package
 
-# Fix missing dependencies if needed
+Go to the [Releases page](https://github.com/pratham1kruk/whatson/releases) and download:
+
+```
+whatson_0.1.0_all.deb
+```
+
+#### Step 2 — Install the package
+
+Open a terminal in the folder where you downloaded the file and run:
+
+```bash
+sudo dpkg -i whatson_0.1.0_all.deb
+```
+
+If you get dependency errors, fix them with:
+
+```bash
 sudo apt-get install -f
 ```
 
+#### Step 3 — Install the VS Code extension
+
+The package installs the extension automatically during `dpkg -i` if VS Code is already on your PATH.
+
+If you installed VS Code **after** the package, run the installer script manually:
+
+```bash
+/opt/whatson/install.sh
+```
+
+> Restart VS Code after installation if the extension does not appear immediately.
+
+#### Uninstall (Linux)
+
+```bash
+sudo dpkg -r whatson
+```
+
+This removes the package and uninstalls the extension from VS Code automatically.
+
+---
+
+### Manual Extension Install (all platforms)
+
+If you prefer to install only the VS Code extension without the full package:
+
+```bash
+code --install-extension whatson-0.1.0.vsix
+```
+
+Download `whatson-0.1.0.vsix` from the [Releases page](https://github.com/pratham1kruk/whatson/releases).
+
+---
+
 ### What gets installed
 
-- Whatson binary (standalone executable)
-- VS Code extension (`.vsix` installed via `code --install-extension`)
+| Component | Windows | Linux |
+|---|---|---|
+| Whatson engine | `%LOCALAPPDATA%\Whatson\whatson.exe` | `/opt/whatson/` |
+| VS Code extension | auto-installed by setup wizard | auto-installed by `dpkg` |
+| Uninstaller | Add/Remove Programs | `sudo dpkg -r whatson` |
 
 ---
 
 ## Quick Start
 
-**1. Install the extension**
-```bash
-code --install-extension whatson-0.1.0.vsix
-```
-
-**2. Open a project in VS Code**
+**1. Open a project in VS Code**
 ```
 File → Open Folder → select your project
 ```
 
-**3. Run**
+**2. Run**
 ```
 Ctrl+Shift+P → getparent
 ```
